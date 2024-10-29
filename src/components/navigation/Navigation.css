@@ -1,0 +1,39 @@
+.navigation-menu {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px 0;
+    width: 100%;
+  }
+  
+  .navigation-menu-item {
+    margin: 0 15px;
+  }
+  
+  .navigation-menu-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .navigation-menu-link:hover {
+    color: #f0f0f0;
+  }
+  
+  .navigation-menu-trigger {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .navigation-menu {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navigation-menu-item {
+      margin: 10px 0;
+    }
+  }
