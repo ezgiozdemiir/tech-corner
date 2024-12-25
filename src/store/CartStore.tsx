@@ -1,6 +1,7 @@
 import { CartState, Product } from '@/types/types'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import React from 'react'
 
 const useCartStore = create<CartState>()(
     persist(

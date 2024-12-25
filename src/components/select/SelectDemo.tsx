@@ -8,6 +8,7 @@ import {
     SelectValue,
     SelectLabel,
 } from '../ui/select'
+import React from 'react'
 
 //colorOptions and setSelectedColor is transfered down to child from "App.jsx"
 export function SelectDemo({ colorOptions, setedColor }: SelectDemoProps) {

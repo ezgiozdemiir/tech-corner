@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard Component matches the snapshot 1`] = `
+<DocumentFragment>
+  <li
+    class="product-card"
+  >
+    <img
+      alt="Sample Product"
+      src="https://via.placeholder.com/150"
+    />
+    <h2>
+      Sample Product
+    </h2>
+    <p>
+      Price: $99.99
+    </p>
+    <div
+      class="color-selection"
+    >
+      <div>
+        Select Color:
+      </div>
+      <button
+        aria-autocomplete="none"
+        aria-controls="radix-:r0:"
+        aria-expanded="false"
+        class="flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 select-trigger"
+        data-placeholder=""
+        data-state="closed"
+        dir="ltr"
+        role="combobox"
+        type="button"
+      >
+        <span
+          style="pointer-events: none;"
+        >
+          Select a color
+        </span>
+        <svg
+          aria-hidden="true"
+          class="h-4 w-4 opacity-50"
+          fill="none"
+          height="15"
+          viewBox="0 0 15 15"
+          width="15"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      style="margin-top: 10px;"
+    >
+      <label>
+        Quantity:
+        <input
+          min="1"
+          style="width: 50px; margin-left: 10px;"
+          type="number"
+          value="1"
+        />
+      </label>
+    </div>
+    <button
+      class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 button"
+    >
+      <svg
+        class="lucide lucide-shopping-cart cart-button-icon"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="8"
+          cy="21"
+          r="1"
+        />
+        <circle
+          cx="19"
+          cy="21"
+          r="1"
+        />
+        <path
+          d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+        />
+      </svg>
+       Add to Cart
+    </button>
+  </li>
+</DocumentFragment>
+`;

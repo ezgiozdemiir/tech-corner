@@ -2,6 +2,7 @@ import { Button } from '../../components/ui/button'
 import { ShoppingCart } from 'lucide-react'
 import { SelectDemo } from '../../components/select/SelectDemo'
 import { Product } from '@/types/types'
+import React from 'react'
 
 interface ProductCardProps {
     product: Product

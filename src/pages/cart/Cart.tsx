@@ -1,5 +1,6 @@
-import { useMemo } from 'react'
+import { useMemo, useRef } from 'react'
 import useCartStore from '../../store/CartStore'
+import React from 'react'
 
 interface CartItem {
     id: number
@@ -33,24 +34,26 @@ function Cart() {
             ? 'Customer can buy cart products.'
             : 'Customer cannot buy cart products. Please remove some products.'
     }, [customerBalance, totalCost])
-
+    const cartRef = useRef<HTMLDivElement>(null)
     return (
         <div>
-            <h2>Cart</h2>
-            <p>Your Balance: ${customerBalance}</p>
+            <div ref={cartRef}>
+                <h2>Cart</h2>
+                <p>Your Balance: ${customerBalance}</p>
 
-            {cart.map((item, index) => (
-                <div key={index}>
-                    {item.name} - ${item.price} - Color: {item.selectedColor} -
-                    Quantity: {item.quantity}
-                    <button onClick={() => removeFromCart(item.id)}>
-                        Remove
-                    </button>
-                </div>
-            ))}
+                {cart.map((item, index) => (
+                    <div key={index}>
+                        {item.name} - ${item.price} - Color:{' '}
+                        {item.selectedColor} - Quantity: {item.quantity}
+                        <button onClick={() => removeFromCart(item.id)}>
+                            Remove
+                        </button>
+                    </div>
+                ))}
 
-            <p>Total Cost: ${totalCost}</p>
-            <p>{balanceMessage}</p>
+                <p>Total Cost: ${totalCost}</p>
+                <p>{balanceMessage}</p>
+            </div>
         </div>
     )
 }
