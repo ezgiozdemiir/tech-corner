@@ -1,59 +1,60 @@
-import { useMemo, useRef } from 'react'
+import React, { useMemo, useReducer, useRef } from 'react'
 import useCartStore from '../../store/CartStore'
-import React from 'react'
-
-interface CartItem {
-    id: number
-    name: string
-    price: number
-    selectedColor: string
-    quantity: number
-}
-
-interface CartState {
-    cart: CartItem[]
-    totalCost: number
-    customerBalance: number
-    removeFromCart: (id: number) => void
-}
+import CartHeader from '../../components/cart-components/cart-header/CartHeader'
+import CartItem from '../../components/cart-components/cart-item/CartItem'
+import CartSummary from '../../components/cart-components/cart-summary/CartSummary'
+import './Cart.css'
+import variables from '../../assets/variables/variables.json'
 
 function Cart() {
-    const cart = useCartStore((state: CartState) => state.cart)
-    const totalCost = useCartStore((state: CartState) => state.totalCost)
-    const customerBalance = useCartStore(
-        (state: CartState) => state.customerBalance
-    )
-    const removeFromCart = useCartStore(
-        (state: CartState) => state.removeFromCart
-    )
-    const eslintTrial: string = ''
+    const cart = useCartStore((state) => state.cart)
+    const totalCost = useCartStore((state) => state.totalCost)
+    const customerBalance = useCartStore((state) => state.customerBalance)
+    const removeFromCart = useCartStore((state) => state.removeFromCart)
 
-    // Use useMemo to avoid recalculating the balance message on every render
+    const initialState = { isEditing: false }
+    const reducer = (state: any, action: any) => {
+        switch (action.type) {
+            case `${variables.cart.toggle_edit}`:
+                return { ...state, isEditing: !state.isEditing }
+            default:
+                return state
+        }
+    }
+    const [state, dispatch] = useReducer(reducer, initialState)
+
     const balanceMessage = useMemo(() => {
         return customerBalance >= totalCost
-            ? 'Customer can buy cart products.'
-            : 'Customer cannot buy cart products. Please remove some products.'
+            ? `${variables.cart.can_buy}`
+            : `${variables.cart.cannot_buy}`
     }, [customerBalance, totalCost])
+
     const cartRef = useRef<HTMLDivElement>(null)
+
     return (
-        <div>
-            <div ref={cartRef}>
-                <h2>Cart</h2>
-                <p>Your Balance: ${customerBalance}</p>
-
-                {cart.map((item, index) => (
-                    <div key={index}>
-                        {item.name} - ${item.price} - Color:{' '}
-                        {item.selectedColor} - Quantity: {item.quantity}
-                        <button onClick={() => removeFromCart(item.id)}>
-                            Remove
-                        </button>
-                    </div>
+        <div className="cart-container" ref={cartRef}>
+            <CartHeader
+                isEditing={state.isEditing}
+                toggleEdit={() =>
+                    dispatch({ type: `${variables.cart.toggle_edit}` })
+                }
+            />
+            <div className="cart-items">
+                {cart.map((item) => (
+                    <CartItem
+                        key={item.id}
+                        item={item}
+                        removeFromCart={removeFromCart}
+                        isEditing={state.isEditing}
+                    />
                 ))}
-
-                <p>Total Cost: ${totalCost}</p>
-                <p>{balanceMessage}</p>
             </div>
+
+            <CartSummary
+                totalCost={totalCost}
+                customerBalance={customerBalance}
+                balanceMessage={balanceMessage}
+            />
         </div>
     )
 }

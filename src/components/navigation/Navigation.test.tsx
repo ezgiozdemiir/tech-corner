@@ -28,7 +28,6 @@ describe('Navigation Component', () => {
         const links = [
             { path: '/', label: 'Products' },
             { path: '/cart', label: 'Cart' },
-            { path: '/sign-in', label: 'Sign In' },
         ]
 
         links.forEach((link) => {

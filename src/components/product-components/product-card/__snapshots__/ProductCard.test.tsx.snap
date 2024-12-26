@@ -5,10 +5,15 @@ exports[`ProductCard Component matches the snapshot 1`] = `
   <li
     class="product-card"
   >
-    <img
-      alt="Sample Product"
-      src="https://via.placeholder.com/150"
-    />
+    <a
+      href="/products/id/1"
+    >
+      <img
+        alt="Sample Product"
+        class="product-image"
+        src="https://via.placeholder.com/150"
+      />
+    </a>
     <h2>
       Sample Product
     </h2>
@@ -68,9 +73,7 @@ exports[`ProductCard Component matches the snapshot 1`] = `
         />
       </label>
     </div>
-    <button
-      class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 button"
-    >
+    <button>
       <svg
         class="lucide lucide-shopping-cart cart-button-icon"
         fill="none"

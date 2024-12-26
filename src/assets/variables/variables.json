@@ -1,0 +1,21 @@
+{ "cart-header" : {
+    "stop_editing": "Stop Editing",
+    "edit_cart": "Edit Cart"
+  },
+  "cart": {
+    "can_buy":"Customer can buy cart products.",
+    "cannot_buy": "Customer cannot buy cart products. Please remove some products.",
+    "toggle_edit": "TOGGLE_EDIT"
+  },
+  "product-detail": {
+    "fail_fetch": "Failed to fetch product with ID ",
+    "error_text": "Could not fetch product details. Please try again.",
+    "loading": "Loading product details..."
+  },
+  "products": {
+    "loaded": "Products have loaded!",
+    "error": "Error occured while fetching products!"
+  }
+
+}
+  

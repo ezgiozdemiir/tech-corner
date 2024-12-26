@@ -2,8 +2,13 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import ProductCard from './ProductCard'
-import { Product } from '@/types/types'
-import userEvent from '@testing-library/user-event'
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    Link: ({ to, children }: { to: string; children: React.ReactNode }) => (
+        <a href={to}>{children}</a>
+    ),
+}))
 
 describe('ProductCard Component', () => {
     const mockProduct = {
@@ -49,21 +54,7 @@ describe('ProductCard Component', () => {
     it('calls addToCart when Add to Cart button is clicked', async () => {
         render(<ProductCard {...defaultProps} />)
         const button = screen.getByRole('button', { name: /add to cart/i })
-        userEvent.click(button)
-        await new Promise((resolve) => setTimeout(resolve, 100))
+        fireEvent.click(button)
         expect(mockAddToCart).toHaveBeenCalledWith(mockProduct, 'Red', 1)
     })
-
-    jest.mock('../../components/select/SelectDemo', () => ({
-        SelectDemo: ({
-            setedColor,
-        }: {
-            setedColor: (color: string) => void
-        }) => (
-            <div>
-                <button onClick={() => setedColor('Blue')}>Blue</button>
-                <button onClick={() => setedColor('Green')}>Green</button>
-            </div>
-        ),
-    }))
 })

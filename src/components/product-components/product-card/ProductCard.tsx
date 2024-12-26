@@ -1,29 +1,38 @@
-import { Button } from '../../components/ui/button'
+import { Button } from '../../ui/button'
 import { ShoppingCart } from 'lucide-react'
-import { SelectDemo } from '../../components/select/SelectDemo'
+import { SelectDemo } from '../../select/SelectDemo'
 import { Product } from '@/types/types'
-import React from 'react'
+import React, { forwardRef, useImperativeHandle, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { ProductCardProps } from '../interfaces/product.interface'
 
-interface ProductCardProps {
-    product: Product
-    selectedColor: string
-    setSelectedColor: (color: string) => void
-    quantity: number
-    setQuantity: (quantity: number) => void
-    addToCart: (product: Product, color: string, quantity: number) => void
-}
+const ProductCard = forwardRef((props: ProductCardProps, ref) => {
+    const inputRef = useRef<HTMLInputElement>(null)
 
-const ProductCard: React.FC<ProductCardProps> = ({
-    product,
-    selectedColor,
-    setSelectedColor,
-    quantity,
-    setQuantity,
-    addToCart,
-}) => {
+    useImperativeHandle(ref, () => ({
+        focusInput: () => {
+            inputRef.current?.focus()
+        },
+    }))
+
+    const {
+        product,
+        selectedColor,
+        setSelectedColor,
+        quantity,
+        setQuantity,
+        addToCart,
+    } = props
+
     return (
         <li className="product-card">
-            <img src={product.image} alt={product.name} />
+            <Link to={`/products/id/${product.id}`}>
+                <img
+                    src={product.image}
+                    alt={product.name}
+                    className="product-image"
+                />
+            </Link>
             <h2>{product.name}</h2>
             <p>Price: ${product.price}</p>
             <div className="color-selection">
@@ -37,6 +46,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 <label>
                     Quantity:
                     <input
+                        ref={inputRef}
                         type="number"
                         value={quantity}
                         min="1"
@@ -48,14 +58,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     />
                 </label>
             </div>
-            <Button
-                className="button"
-                onClick={() => addToCart(product, selectedColor, quantity)}
-            >
+            <button onClick={() => addToCart(product, selectedColor, quantity)}>
                 <ShoppingCart className="cart-button-icon" /> Add to Cart
-            </Button>
+            </button>
         </li>
     )
-}
+})
 
 export default ProductCard

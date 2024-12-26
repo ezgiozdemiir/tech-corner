@@ -1,11 +1,10 @@
 import { CartState, Product } from '@/types/types'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import React from 'react'
 
 const useCartStore = create<CartState>()(
     persist(
-        (set) => ({
+        (set, get) => ({
             cart: [],
             totalCost: 0,
             customerBalance: 100000,
@@ -16,7 +15,28 @@ const useCartStore = create<CartState>()(
                 quantity: number
             ) =>
                 set((state) => {
-                    const cost = product.price * quantity
+                    const existingItem = state.cart.find(
+                        (item) =>
+                            item.id === product.id &&
+                            item.selectedColor === selectedColor
+                    )
+
+                    if (existingItem) {
+                        return {
+                            cart: state.cart.map((item) =>
+                                item.id === product.id &&
+                                item.selectedColor === selectedColor
+                                    ? {
+                                          ...item,
+                                          quantity: item.quantity + quantity,
+                                      }
+                                    : item
+                            ),
+                            totalCost:
+                                state.totalCost + product.price * quantity,
+                        }
+                    }
+
                     return {
                         cart: [
                             ...state.cart,
@@ -26,7 +46,7 @@ const useCartStore = create<CartState>()(
                                 quantity,
                             },
                         ],
-                        totalCost: state.totalCost + cost,
+                        totalCost: state.totalCost + product.price * quantity,
                     }
                 }),
 
